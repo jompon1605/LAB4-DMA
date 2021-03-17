@@ -130,7 +130,7 @@ int main(void)
 	  if(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_5) && check == 2)
 	  {
 		  TimeLightOn = HAL_GetTick();
-		  check = 0;
+		  check = 3;
 	  }
   }
   /* USER CODE END 3 */
@@ -353,8 +353,11 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 	else if(HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) == GPIO_PIN_SET)
 	{
 		RealTime_FingerOut = RealTime;
-		Time_FingerOut = RealTime - TimeLightOn;
-}
+		if(check == 3)
+		{
+			Time_FingerOut = RealTime - TimeLightOn;
+		}
+	}
 }
 
 /* USER CODE END 4 */
